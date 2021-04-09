@@ -27,7 +27,7 @@
         <% coins.forEach(function(c, idx) { %> 
           <tr>
             <th scope="row"><%= idx + 1 %></th>
-            <td><%= c.ticker %></td>
+            <td><a href="/coins/<%= idx %>"><%= c.ticker %></a></td>
             <td><%= c.name %></td>
             <td><%= c.price %></td>
             <td>

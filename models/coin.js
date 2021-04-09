@@ -12,15 +12,16 @@ const coins = [
 
 module.exports = {
     getAll,
+    getOne, 
 };
 
 function getAll() {
-    console.log(coins);
+    // console.log(coins);
     return coins;
 }
 
-function getOne() {
-    console.log(coin);
+function getOne(idx) {
+    let coin = coins[idx]
     return coin;
 }
 
