@@ -2,27 +2,27 @@ const mongoose = require("mongoose");
 //shortcut to mongoose Schema
 const Schema = mongoose.Schema; 
 
-const userSchema = new Schema(
+const portfolioSchema = new Schema(
     {
         name: {
             type: String, 
-            enum: ["AUS", "DFW", "DEN", "LAX", "SAN"],
-        },
-        password: {
-            type: String,
-            enum: ["First Class", "Business", "Economy"],
+            required: true, 
+            default: 'Portfolio Name Here',
         },
         user: {
             type: Schema.Types.ObjectId,
-            ref: 'User'
-        }  
+            ref: 'User',
+        },
+        coins: {
+            type: Array,
+        },
     }, 
     {
     timestamps: true
-    }
+    },
 );
 
-module.exports = mongoose.model("Flight", flightSchema)
+module.exports = mongoose.model("Portoflio", portfolioSchema)
 
 
 
