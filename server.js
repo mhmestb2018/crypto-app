@@ -7,6 +7,8 @@ var logger = require('morgan');
 // Initiate database
 require('./config/database')
 
+const methodOverride = require('method-override');
+
 var indexRouter = require('./routes/index');
 var coinsRouter = require('./routes/coins');
 const portfoliosRouter = require('./routes/portfolios');
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/coins', coinsRouter);

@@ -20,11 +20,16 @@
          <% if (portfolio.length) { %> 
           <% portfolio.forEach(function(p, idx) { %> 
             <tr>
-              <th> <%= idx + 1 %>  </th>
-              <th> <a href="/portfolios/<%= p._id %> "><%= p.name %></a>  </th>
-              <th> <%= p.user %>  </th>
-              <th> whut  </th>
-              <th> whut  </th>
+              <td> <%= idx + 1 %>  </td>
+              <td> <a href="/portfolios/<%= p._id %>"><%= p.name %></a>  </td>
+              <td> <%= p.user %>  </td>
+              <td> whut  </td>
+              <td> whut  </td>
+              <td>
+              <form action="/portfolios/<%= p._id %>?_method=DELETE" class="delete-form"	method="POST">
+                    <button class="btn btn-primary" type="submit">DELETE</button>
+              </form>
+              </td>
             </tr>
           <% }); %> 
         <% } %> 

@@ -3,4 +3,26 @@
     <h1>Portfolio Details</h1>
     <%= portfolio.name %>
 
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ticker Symbol</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last Price</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% portfolio.coins.forEach(function(c, idx) { %> 
+          <tr>
+            <th scope="row"><%= idx + 1 %></th>
+            <td><a href="/coins/<%= idx %>"><%= c.ticker %></a></td>
+            <td><%= c.name %></td>
+            <td><%= c.price %></td>
+          </tr>
+          <% }); %> 
+        </tbody>
+      </table>
+
 <%- include('../partials/footer'); %>
