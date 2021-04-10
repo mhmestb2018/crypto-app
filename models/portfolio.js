@@ -19,10 +19,10 @@ const portfolioSchema = new Schema(
     }, 
     {
     timestamps: true
-    },
+    }
 );
 
-module.exports = mongoose.model("Portoflio", portfolioSchema)
+module.exports = mongoose.model("Portfolio", portfolioSchema)
 
 
 

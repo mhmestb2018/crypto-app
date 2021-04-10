@@ -2,6 +2,12 @@
 
     <h1>Portfolio</h1>
     <table class="table">
+      <form action="/portfolios" method="POST"> 
+              <label>Name:
+                <input type="text" name="name">
+              </label>
+              <button class="btn btn-primary">Add portfolio</button>
+      </form>
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -9,10 +15,19 @@
             <th scope="col">Total Balance</th>
             <th scope="col">Change %</th>
             <th scope="col">Action</th>
-            <form> 
-                    <button class="btn btn-primary">Favorite</button>
-            </form>
          </tr>
+
+         <% if (portfolio.length) { %> 
+          <% portfolio.forEach(function(p, idx) { %> 
+            <tr>
+              <th> <%= idx + 1 %>  </th>
+              <th> <a href="/portfolios/<%= p._id %> "><%= p.name %></a>  </th>
+              <th> <%= p.user %>  </th>
+              <th> whut  </th>
+              <th> whut  </th>
+            </tr>
+          <% }); %> 
+        <% } %> 
         </thead>
    
       </table>

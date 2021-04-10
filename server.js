@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// Initiate database
+require('./config/database')
+
 var indexRouter = require('./routes/index');
 var coinsRouter = require('./routes/coins');
 const portfoliosRouter = require('./routes/portfolios');
