@@ -1,4 +1,5 @@
 const Coin = require('../models/coin');
+const Portfolio = require('../models/portfolio')
 
 module.exports = {
     index,
@@ -6,9 +7,16 @@ module.exports = {
 }
 
 function index(req, res, next) {
-    res.render('coins', {
-        coins: Coin.getAll(),
-    });
+    Portfolio.find({}, function (err, portfolios) {
+        if (err) {
+            return next(err)
+        }
+
+        res.render('coins', {
+            coins: Coin.getAll(),
+            portfolios: portfolios
+        });
+    })
 }
 
 function show (req, res, next) {

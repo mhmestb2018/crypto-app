@@ -1,10 +1,12 @@
 const Portfolio = require('../models/portfolio');
+const Coin = require('../models/coin')
 
 module.exports = {
     index,
     create,
     showOne,
-    delete: deleteOne
+    delete: deleteOne,
+    addCoin,
 }
 
 function index(req, res, next) {
@@ -36,4 +38,11 @@ function deleteOne(req, res, next) {
     Portfolio.findByIdAndDelete(req.params.id, function(err, portoflios) {
         res.redirect('/portfolios');    
     });
+}
+
+function addCoin(req, res, next) {
+         Portfolio.findById(req.params.id, function (err, portfolio) {
+             console.log(`current portfolio: ${portfolio.name}`)
+             res.render(`portfolios/add`, {portfolio, coin: Coin.getOne(req.params.coinId)})
+         })
 }

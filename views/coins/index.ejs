@@ -19,13 +19,18 @@
             <td><%= c.name %></td>
             <td><%= c.price %></td>
             <td>
-            <form> 
-                <button class="btn btn-primary">Favorite</button>
-            </form>
+              <% portfolios.forEach(function(p) { %> 
+                <form action="/portfolios/<%= p._id %>/add/<%= idx %>" method="GET"> 
+                  <%= p.name %> <button type="submit">+</button><BR>
+                </form>
+              <% }) %>
             </td>
           </tr>
           <% }); %> 
         </tbody>
       </table>
+
+      
+
       
 <%- include('../partials/footer'); %>

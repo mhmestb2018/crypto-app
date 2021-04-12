@@ -1,0 +1,13 @@
+<%- include('../partials/header'); %>
+ 
+    <h1>Current Portfolio:
+      </h1>
+
+    <form action="/portfolios/" method="POST"> 
+        <label>Name:
+          <input type="text" name="name">
+        </label>
+        <button class="btn btn-primary" type="submit">Add portfolio</button>
+</form>
+
+<%- include('../partials/footer'); %>
