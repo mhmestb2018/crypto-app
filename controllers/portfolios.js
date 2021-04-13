@@ -1,5 +1,6 @@
 const Portfolio = require('../models/portfolio');
-const Coin = require('../models/coin')
+const Coin = require('../models/coin');
+const { render } = require('../server');
 
 module.exports = {
     index,
@@ -7,6 +8,7 @@ module.exports = {
     showOne,
     delete: deleteOne,
     addCoin,
+    updateCoin
 }
 
 function index(req, res, next) {
@@ -59,3 +61,18 @@ async function addCoin(req, res, next) {
         }
 }
 
+
+function updateCoin(req, res, next) {
+    console.log(req.body)
+    Portfolio.findById(req.params.id, function (err, portfolio) {
+        if (err) {
+            return next(err)
+        }
+        portfolio.coins.push(req.body);
+        portfolio.save()
+
+        console.log(`THIS IS WHAT PORTFOLIO LOOKS LIKE: ${portfolio}`)
+        res.render("portfolios/show", { portfolio });
+    })
+
+}

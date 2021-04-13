@@ -1,15 +1,20 @@
 <%- include('../partials/header'); %>
  
-    <h1>Add: <%= coin.FULLNAME %> </h1>
+<h1>Add: <%= coin.FULLNAME %> </h1>
+    <h4>Current Portfolio: <%= portfolio.name %> </h4>
+    <BR><BR><BR>
 
-    <form action="/portfolios/" method="POST"> 
-      <h4>Current Portfolio: <%= portfolio.name %> </h4>
-      <BR><BR><BR>
-      <h5><%= coin.FFROMSYMBOL %></h5>
+<form action="/portfolios/<%= portfolio._id %>" method="POST"> 
+  <fieldset>
+    <label for="fullName"></label>
+    <input type="hidden" name="fullName" value="<%= coin.FULLNAME %> ">
+    <label for="name"></label>
+    <input type="hidden" name="name" value="<%= coin.FROMSYMBOL %> ">
+      <h5><%= coin.FROMSYMBOL %></h5>
       <h5>Current Price: <%= coin.PRICE %></h5>
-        <label>Amount Owned?:
-          <input type="number" name="amount">
-        </label>
+    </fieldset>
+    <label for="amount">Amount Owned:</label>
+      <input type="number" name="amount">
         <br>
         <button class="btn btn-primary" type="submit">Add to Portfolio</button>
 </form>
