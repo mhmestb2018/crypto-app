@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+// load secrets from .env file
+require('dotenv').config();
 
 // Initiate database
 require('./config/database')

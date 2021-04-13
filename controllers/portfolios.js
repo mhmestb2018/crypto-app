@@ -40,9 +40,22 @@ function deleteOne(req, res, next) {
     });
 }
 
-function addCoin(req, res, next) {
-         Portfolio.findById(req.params.id, function (err, portfolio) {
-             console.log(`current portfolio: ${portfolio.name}`)
-             res.render(`portfolios/add`, {portfolio, coin: Coin.getOne(req.params.coinId)})
-         })
+async function addCoin(req, res, next) {
+    
+    try{
+        const coin = await Coin.getOne(req.params.name, req.params.fullname);
+             Portfolio.findById(req.params.id, function (err, portfolio) {
+                if (err) {
+                    return next(err)
+                }
+                 console.log(`current portfolio: ${portfolio.name}`)
+                
+                 res.render(`portfolios/add`, {portfolio, coin})
+             })
+
+     
+        } catch (err) {
+            res.send(err)
+        }
 }
+

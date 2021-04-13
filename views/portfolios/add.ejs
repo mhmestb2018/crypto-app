@@ -1,13 +1,17 @@
 <%- include('../partials/header'); %>
  
-    <h1>Current Portfolio:
-      </h1>
+    <h1>Add: <%= coin.FULLNAME %> </h1>
 
     <form action="/portfolios/" method="POST"> 
-        <label>Name:
-          <input type="text" name="name">
+      <h4>Current Portfolio: <%= portfolio.name %> </h4>
+      <BR><BR><BR>
+      <h5><%= coin.FFROMSYMBOL %></h5>
+      <h5>Current Price: <%= coin.PRICE %></h5>
+        <label>Amount Owned?:
+          <input type="number" name="amount">
         </label>
-        <button class="btn btn-primary" type="submit">Add portfolio</button>
+        <br>
+        <button class="btn btn-primary" type="submit">Add to Portfolio</button>
 </form>
 
 <%- include('../partials/footer'); %>

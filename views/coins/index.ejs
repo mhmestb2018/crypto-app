@@ -1,34 +1,38 @@
 <%- include('../partials/header'); %>
 
-    <h1>Coin Marketplace</h1>
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Ticker Symbol</th>
-            <th scope="col">Name</th>
-            <th scope="col">Last Price</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% coins.forEach(function(c, idx) { %> 
-          <tr>
-            <th scope="row"><%= idx + 1 %></th>
-            <td><a href="/coins/<%= idx %>"><%= c.ticker %></a></td>
-            <td><%= c.name %></td>
-            <td><%= c.price %></td>
-            <td>
-              <% portfolios.forEach(function(p) { %> 
-                <form action="/portfolios/<%= p._id %>/add/<%= idx %>" method="GET"> 
-                  <%= p.name %> <button type="submit">+</button><BR>
-                </form>
-              <% }) %>
-            </td>
-          </tr>
-          <% }); %> 
-        </tbody>
-      </table>
+      <h1>Coin Marketplace</h1>
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Ticker Symbol</th>
+              <th scope="col">Name</th>
+              <th scope="col">Last Price</th>
+              <th scope="col">%1hr</th>
+              <th scope="col">%24hr</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% coins.forEach(function(c, idx) { %>
+              <tr>
+                  <th scope="col"><%= idx + 1 %></th>
+                  <td><a href="/coins/<%= c.ticker %>-<%= c.name %>"><%= c.ticker %></a></td>
+                  <td><%= c.name %></td>
+                  <td><%= c.curPrice %></td>
+                  <td><%= c.price1PCT %></td>
+                  <td><%= c.price24PCT %></td>
+                  <td>
+                    <% portfolios.forEach(function(p) { %> 
+                      <form action="/portfolios/<%= p._id %>/add/<%= c.ticker %>-<%= c.name %>" method="GET"> 
+                        <%= p.name %> <button type="submit">+</button><BR>
+                      </form>
+                    <% }) %>
+                  </td>
+                </tr>
+                <% }); %> 
+          </tbody>
+        </table>
 
       
 
