@@ -128,8 +128,14 @@ async function updateCoin(req, res, next) {
 }
 
 function updateName(req, res, next) {
-    Portfolio.findOneAndUpdate(req.params.id, req.body, function(err, portfolio) {
-        if (err) return res.status(500).send(err);
-        return res.redirect(`${req.params.id}`);
+   Portfolio.findById(req.params.id, function(err, portfolio) {
+        portfolio.name= req.body.name;
+
+        portfolio.save(function (err) {
+            if(err) {
+                res.send(err);
+            }
+            return res.redirect(`${req.params.id}`);
+        })
     })
 }
