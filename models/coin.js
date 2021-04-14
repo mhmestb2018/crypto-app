@@ -18,6 +18,8 @@ const fetch = require('node-fetch');
 module.exports = {
     getAll,
     getOne, 
+    getMultiple,
+    getTotal
 };
 
     /* 
@@ -104,8 +106,42 @@ async function getOne(name, fullname) {
 }
 
 
+async function getMultiple(coinArray) {
+    let coinString = coinArray.join(',')
+    let response = await fetch(`${rootUrl}/data/pricemulti?fsyms=${coinString}&tsyms=USD&api_key=${token}`);
+    // Response will be an object. Joined the coinArray to match the URL perimeters of fsyms=COIN,COIN,COIN,.....
+    let coinList = await response.json();
+    // Unnecessary addition as we can just pass back the object to the EJS and render there but to be consistent with rest of the function, we still store info in coinInfo
+    let coinData = {};
+    coinArray.forEach(coin => {
+        coinData[coin] = coinList[coin].USD.toFixed(2);
+    })
+        return coinData;
+}
 
 
+async function getTotal(coinObj) {
+    let coinArray =[];
+    for (i=0; i<Object.keys(coinObj).length; i++) {
+        coinArray.push(coinObj[i])
+    }
+    let coinString = coinArray.join(',')
+
+    let response = await fetch(`${rootUrl}/data/pricemulti?fsyms=${coinString}&tsyms=USD&api_key=${token}`);
+    // Response will be an object. Joined the coinArray to match the URL perimeters of fsyms=COIN,COIN,COIN,.....
+    let coinList = await response.json();
+    // Unnecessary addition as we can just pass back the object to the EJS and render there but to be consistent with rest of the function, we still store info in coinInfo
+    let coinData = coinObj;
+    for (i=0; i<Object.keys(coinData).length; i++) {
+        coinData[i].forEach((coin, idx) => {
+            coinData[i][idx] = coinList[coin].USD
+            console.log(coinData)
+        })
+    }
+    console.log(coinObj)
+    console.log(`eh : ${coinData}`)
+        return coinData;
+}
 
 
 

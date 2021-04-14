@@ -44,9 +44,9 @@
           <tr>
             <td><a href="/coins/<%=c.name%>-<%=c.fullName%>"><%= c.name %></a></td>
             <td><%= c.fullName %></td>
-            <td><%= c.price %></td>
+            <td>$<%= coins[c.name] %></td>
             <td><%= c.amount %></td>
-            <td><%= c.price %></td>
+            <td>$<%= (c.amount*coins[c.name]).toFixed(2) %></td>
           </tr>
           <% }); %> 
         </tbody>

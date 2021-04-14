@@ -4,20 +4,10 @@ const Portfolio = require('../models/portfolio')
 module.exports = {
     index,
     show, 
+    portfolioCoins
 }
 
 async function index(req, res, next) {
-    // Portfolio.find({}, function (err, portfolios) {
-    //     if (err) {
-    //         return next(err)
-    //     }
-
-    //     res.render('coins', {
-    //         coins: Coin.getAll(),
-    //         portfolios: portfolios
-    //     });
-    // })
-
     try{
         const coins = await Coin.getAll();
 
@@ -47,4 +37,16 @@ async function show (req, res, next) {
         res.send(err)
     }
     
+}
+
+async function portfolioCoins (req, res, next) {
+    try{
+        const coins = await Coin.getMultiple()
+        let currentPortfolio = req.body.id;
+        Portfolio.find(req.body.id, function(err, portfolio) {
+            let coinList = portfolio.coins;
+        })
+    } catch (err) {
+        res.send(err)
+    }
 }

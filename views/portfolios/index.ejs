@@ -13,18 +13,21 @@
             <th scope="col">#</th>
             <th scope="col">Portfolio Name</th>
             <th scope="col">Total Balance</th>
-            <th scope="col">Change %</th>
             <th scope="col">Action</th>
          </tr>
 
-         <% if (portfolio.length) { %> 
-          <% portfolio.forEach(function(p, idx) { %> 
+         <% if (portfolios.length) { %> 
+          <% portfolios.forEach(function(p, idx) { %> 
             <tr>
               <td> <%= idx + 1 %>  </td>
               <td> <a href="/portfolios/<%= p._id %>"><%= p.name %></a>  </td>
-              <td> <%= p.user %>  </td>
-              <td> whut  </td>
-              <td> whut  </td>
+              <td> 
+                <% const pTotal=[] %> 
+                <% p.coins.forEach((c, idz) => { %> 
+                <% pTotal.push(p.coins[idz]["amount"] * total[idx][idz])%>  
+                  <% }) %> 
+                  <%= pTotal.reduce((a,b) => a+b,0).toFixed(2) %> 
+              </td>
               <td>
               <form action="/portfolios/<%= p._id %>?_method=DELETE" class="delete-form"	method="POST">
                     <button class="btn btn-primary" type="submit">DELETE</button>

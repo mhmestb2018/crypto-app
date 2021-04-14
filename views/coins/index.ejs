@@ -30,7 +30,7 @@
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <% portfolios.forEach(function(p) { %> 
                           <form action="/portfolios/<%= p._id %>/add/<%= c.ticker %>-<%= c.name %>" method="GET"> 
-<button class="dropdown-item" type="submit"><%= p.name %></button>
+<button class="dropdown-item" type="submit">+ <%= p.name %></button>
                           </form>
                         <% }) %>
                       </div>
