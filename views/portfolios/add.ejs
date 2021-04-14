@@ -7,9 +7,9 @@
 <form action="/portfolios/<%= portfolio._id %>" method="POST"> 
   <fieldset>
     <label for="fullName"></label>
-    <input type="hidden" name="fullName" value="<%= coin.name %> ">
+    <input type="hidden" name="fullName" value="<%= coin.name %>">
     <label for="name"></label>
-    <input type="hidden" name="name" value="<%= coin.ticker %> ">
+    <input type="hidden" name="name" value="<%= coin.ticker %>">
       <h5><%= coin.ticker %></h5>
       <h5>Current Price: <%= coin.curPrice %></h5>
     </fieldset>

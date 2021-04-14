@@ -29,7 +29,7 @@ async function index(req, res, next) {
             res.render('coins', {coins, portfolios})
         });
     } catch (err) {
-        res.send(err)
+        res.send("Please reload Page. Seems API failed to load and made a boo boo.")
     }
 
 
