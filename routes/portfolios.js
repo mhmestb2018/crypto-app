@@ -8,6 +8,8 @@ router.get('/', portfoliosCtrl.index);
 router.post('/', portfoliosCtrl.create);
 router.delete('/:id', portfoliosCtrl.delete);
 router.get('/:id', portfoliosCtrl.showOne);
-
+router.get('/:id/add/:name-:fullname', portfoliosCtrl.addCoin)
+router.post('/:id', portfoliosCtrl.updateCoin)
+router.put('/:id', portfoliosCtrl.updateName);
 
 module.exports = router;
