@@ -68,7 +68,21 @@ async function getOne(name, fullname) {
     let coin = await response.json();
     let data = coin.RAW[`${name}`].USD;
         
-
+    let coinData = {
+        "ticker" : data.FROMSYMBOL,
+        "name" : fullname,
+        "curPrice" : data.PRICE.toFixed(2),
+        "price24Low": data.LOW24HOUR.toFixed(2),
+        "price24High": data.HIGH24HOUR.toFixed(2),
+        "supply" : data.SUPPLY,
+        "mcap" : data.MKTCAP,
+        "volume": data.TOTALVOLUME24HTO.toFixed(2),
+        "changeHour": data.CHANGEHOUR.toFixed(2),
+        "changeHourPCT": data.CHANGEPCTHOUR.toFixed(2),
+        "changeDay": data.CHANGEDAY.toFixed(2),
+        "changeDayPCT": data.CHANGEPCTDAY.toFixed(2),
+        "lastUpdated": data.LASTUPDATE
+    };
     /* ====== H E L P E R ==========
         FROMSYMBOL: name
         LOW24HOUR: lowest price
@@ -77,6 +91,7 @@ async function getOne(name, fullname) {
         CHANGEPCT24HOUR: change price % of 24hours
         CHANGEHOUR: change price hour
         CHANGEPCTHOUR: change price % hour
+        PRICE: Current price
         SUPPLY:
         MKTCAP: market cap
         LASTUPDATE: last updated
@@ -84,9 +99,8 @@ async function getOne(name, fullname) {
     */
 
     // Inject full name from URL due to API foregoing username into this endpoint
-    data.FULLNAME = fullname;
-    console.log(data)
-    return data;
+    console.log(coinData)
+    return coinData;
 }
 
 

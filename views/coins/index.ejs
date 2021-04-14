@@ -23,18 +23,31 @@
                   <td><%= c.price1PCT %></td>
                   <td><%= c.price24PCT %></td>
                   <td>
-                    <% portfolios.forEach(function(p) { %> 
-                      <form action="/portfolios/<%= p._id %>/add/<%= c.ticker %>-<%= c.name %>" method="GET"> 
-                        <%= p.name %> <button type="submit">+</button><BR>
-                      </form>
-                    <% }) %>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle bg-transparent" style="border: 0;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="https://i.imgur.com/sAARZ8H.png" width="40px" height="40px">
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% portfolios.forEach(function(p) { %> 
+                          <form action="/portfolios/<%= p._id %>/add/<%= c.ticker %>-<%= c.name %>" method="GET"> 
+<button class="dropdown-item" type="submit"><%= p.name %></button>
+                          </form>
+                        <% }) %>
+                      </div>
+                    </div>
                   </td>
                 </tr>
                 <% }); %> 
           </tbody>
         </table>
 
-      
+
+        
+        <script>
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();   
+        });
+        </script>
 
       
 <%- include('../partials/footer'); %>

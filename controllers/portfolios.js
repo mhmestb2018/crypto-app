@@ -1,6 +1,7 @@
 const Portfolio = require('../models/portfolio');
 const Coin = require('../models/coin');
 const { render } = require('../server');
+const User = require('../models/user');
 
 module.exports = {
     index,
@@ -8,7 +9,8 @@ module.exports = {
     showOne,
     delete: deleteOne,
     addCoin,
-    updateCoin
+    updateCoin,
+    updateName
 }
 
 function index(req, res, next) {
@@ -21,10 +23,16 @@ function index(req, res, next) {
 function create(req, res) {
     console.log(`calling create function`)
     console.log(req.body.name)
-    // change the req.body to fake user ID to reference
-    req.body.user = '60711bda8b1b74ac7a158202';
-    Portfolio.create(req.body, function(err, addedPortfolio) {
-        res.redirect("portfolios")
+    // TODO: findOne due to only having one user in data. Fix if time permits.
+    User.findOne({}, function (err, user) {
+        if (err) {
+            return next;
+        }
+        req.body.user = user._id;
+        Portfolio.create(req.body, function(err, addedPortfolio) {
+            res.redirect("portfolios")
+        })
+        
     })
 }
 
@@ -75,4 +83,11 @@ function updateCoin(req, res, next) {
         res.render("portfolios/show", { portfolio });
     })
 
+}
+
+function updateName(req, res, next) {
+    Portfolio.findOneAndUpdate(req.params.id, req.body, function(err, portfolio) {
+        if (err) return res.status(500).send(err);
+        return res.redirect(`${req.params.id}`);
+    })
 }
