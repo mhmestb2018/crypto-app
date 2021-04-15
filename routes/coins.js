@@ -8,5 +8,4 @@ router.get('/', coinsCtrl.index);
 router.get('/:name-:fullname', coinsCtrl.show);
 
 
-
 module.exports = router;

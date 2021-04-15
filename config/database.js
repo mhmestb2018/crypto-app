@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/coins',
-    {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}
-);
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true
+  });
 
 const db = mongoose.connection;
 db.on('connected', function() {

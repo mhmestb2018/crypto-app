@@ -1,43 +1,44 @@
 <%- include('../partials/header'); %>
 
-    <h1>Portfolio</h1>
-    <table class="table">
-      <form action="/portfolios" method="POST"> 
-              <label>Name:
-                <input type="text" name="name">
-              </label>
-              <button class="btn btn-primary">Add portfolio</button>
-      </form>
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Portfolio Name</th>
-            <th scope="col">Total Balance</th>
-            <th scope="col">Action</th>
-         </tr>
+<h1>Portfolio</h1>
+<table class="table">
+  <form action="/portfolios" method="POST">
+    <label
+      >Name:
+      <input type="text" name="name" />
+    </label>
+    <button class="btn btn-primary">Add portfolio</button>
+  </form>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Portfolio Name</th>
+      <th scope="col">Total Balance</th>
+      <th scope="col">Action</th>
+    </tr>
 
-         <% if (portfolios.length) { %> 
-          <% portfolios.forEach(function(p, idx) { %> 
-            <tr>
-              <td> <%= idx + 1 %>  </td>
-              <td> <a href="/portfolios/<%= p._id %>"><%= p.name %></a>  </td>
-              <td> 
-                <% const pTotal=[] %> 
-                <% p.coins.forEach((c, idz) => { %> 
-                <% pTotal.push(p.coins[idz]["amount"] * total[idx][idz])%>  
-                  <% }) %> 
-                  <%= pTotal.reduce((a,b) => a+b,0).toFixed(2) %> 
-              </td>
-              <td>
-              <form action="/portfolios/<%= p._id %>?_method=DELETE" class="delete-form"	method="POST">
-                    <button class="btn btn-primary" type="submit">DELETE</button>
-              </form>
-              </td>
-            </tr>
-          <% }); %> 
-        <% } %> 
-        </thead>
-   
-      </table>
+    <% if (portfolios.length) { %> <% portfolios.forEach(function(p, idx) { %>
+    <tr>
+      <td><%= idx + 1 %></td>
+      <td><a href="/portfolios/<%= p._id %>"><%= p.name %></a></td>
+      <td>
+        <% const pTotal=[] %> <% p.coins.forEach((c, idz) => { %> <%
+        pTotal.push(p.coins[idz]["amount"] * total[idx][idz])%> <% }) %> <%=
+        parseFloat(pTotal.reduce((a,b) =>
+        a+b,0).toFixed(2)).toLocaleString('en') %>
+      </td>
+      <td>
+        <form
+          action="/portfolios/<%= p._id %>?_method=DELETE"
+          class="delete-form"
+          method="POST"
+        >
+          <button class="btn btn-primary" type="submit">DELETE</button>
+        </form>
+      </td>
+    </tr>
+    <% }); %> <% } %>
+  </thead>
+</table>
 
 <%- include('../partials/footer'); %>
