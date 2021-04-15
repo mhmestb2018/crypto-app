@@ -15,7 +15,6 @@ function newPage(req, res, next) {
 async function create(req, res, next) {
     console.log(`calling create function`)
     console.log(req.body.name)
-    // TODO: findOne due to only having one user in data. Fix if time permits.
     const checker = await User.findOne({name: req.body.name})
     console.log(checker)
     if (checker) {
