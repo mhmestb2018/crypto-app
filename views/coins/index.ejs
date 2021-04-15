@@ -1,64 +1,78 @@
 <%- include('../partials/header'); %>
 
-      <h1>Coin Marketplace</h1>
-      <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Ticker Symbol</th>
-              <th scope="col">Name</th>
-              <th scope="col">Last Price</th>
-              <th scope="col">%1hr</th>
-              <th scope="col">%24hr</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-              <% coins.forEach(function(c, idx) { %>
-              <tr>
-                  <th scope="col"><%= idx + 1 %></th>
-                  <td><a href="/coins/<%= c.ticker %>-<%= c.name %>"><%= c.ticker %></a></td>
-                  <td><%= c.name %></td>
-                  <td><%= parseFloat(c.curPrice).toLocaleString('en') %></td>
-                  
-                  <% if (c.price1PCT > 0) { %>
-                    <td class="up"><%= c.price1PCT %></td>
-                  <% } else { %>
-                    <td class="down"><%= c.price1PCT %></td>
-                    <% } %>
+<h1>Coin Marketplace</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ticker Symbol</th>
+      <th scope="col">Name</th>
+      <th scope="col">Last Price</th>
+      <th scope="col">%1hr</th>
+      <th scope="col">%24hr</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% coins.forEach(function(c, idx) { %>
+    <tr>
+      <th scope="col"><%= idx + 1 %></th>
+      <td>
+        <a href="/coins/<%= c.ticker %>-<%= c.name %>"><%= c.ticker %></a>
+      </td>
+      <td><%= c.name %></td>
+      <td><%= parseFloat(c.curPrice).toLocaleString('en') %></td>
 
-                    <% if (c.price24PCT > 0) { %>
-                    <td class="up"><%= c.price24PCT %></td>
-                  <% } else { %>
-                    <td class="down"><%= c.price24PCT %></td>
-                    <% } %>
+      <% if (c.price1PCT > 0) { %>
+      <td class="up"><%= c.price1PCT %></td>
+      <% } else { %>
+      <td class="down"><%= c.price1PCT %></td>
+      <% } %> <% if (c.price24PCT > 0) { %>
+      <td class="up"><%= c.price24PCT %></td>
+      <% } else { %>
+      <td class="down"><%= c.price24PCT %></td>
+      <% } %>
 
-                  <td>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle bg-transparent" style="border: 0;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="https://i.imgur.com/sAARZ8H.png" width="40px" height="40px">
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <% portfolios.forEach(function(p) { %> 
-                          <form action="/portfolios/<%= p._id %>/add/<%= c.ticker %>-<%= c.name %>" method="GET"> 
-<button class="dropdown-item" type="submit">+ <%= p.name %></button>
-                          </form>
-                        <% }) %>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <% }); %> 
-          </tbody>
-        </table>
+      <td>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle bg-transparent"
+            style="border: 0"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img
+              src="https://i.imgur.com/sAARZ8H.png"
+              width="40px"
+              height="40px"
+            />
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% portfolios.forEach(function(p) { %>
+            <form
+              action="/portfolios/<%= p._id %>/add/<%= c.ticker %>-<%= c.name %>"
+              method="GET"
+            >
+              <button class="dropdown-item" type="submit">
+                + <%= p.name %>
+              </button>
+            </form>
+            <% }) %>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
 
+<script>
+  $(document).ready(function () {
+    $('[data-toggle="popover"]').popover();
+  });
+</script>
 
-        
-        <script>
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover();   
-        });
-        </script>
-
-      
 <%- include('../partials/footer'); %>

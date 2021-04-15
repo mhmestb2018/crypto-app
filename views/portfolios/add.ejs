@@ -1,22 +1,24 @@
 <%- include('../partials/header'); %>
- 
-<h1>Add: <%= coin.name %> </h1>
-    <h4>Current Portfolio: <%= portfolio.name %> </h4>
-    <BR><BR><BR>
 
-<form action="/portfolios/<%= portfolio._id %>" method="POST"> 
+<h1>Add: <%= coin.name %></h1>
+<h4>Current Portfolio: <%= portfolio.name %></h4>
+<BR /><BR /><BR />
+
+<form action="/portfolios/<%= portfolio._id %>" method="POST">
   <fieldset>
     <label for="fullName"></label>
-    <input type="hidden" name="fullName" value="<%= coin.name %>">
+    <input type="hidden" name="fullName" value="<%= coin.name %>" />
     <label for="name"></label>
-    <input type="hidden" name="name" value="<%= coin.ticker %>">
-      <h5><%= coin.ticker %></h5>
-      <h5>Current Price: <%= parseFloat(coin.curPrice).toLocaleString('en') %></h5>
-    </fieldset>
-    <label for="amount">Amount Owned:</label>
-      <input type="number" name="amount" placeholder="0" step=0.0001 min=0>
-        <br>
-        <button class="btn btn-primary" type="submit">Add to Portfolio</button>
+    <input type="hidden" name="name" value="<%= coin.ticker %>" />
+    <h5><%= coin.ticker %></h5>
+    <h5>
+      Current Price: <%= parseFloat(coin.curPrice).toLocaleString('en') %>
+    </h5>
+  </fieldset>
+  <label for="amount">Amount Owned:</label>
+  <input type="number" name="amount" placeholder="0" step="0.0001" min="0" />
+  <br />
+  <button class="btn btn-primary" type="submit">Add to Portfolio</button>
 </form>
 
 <%- include('../partials/footer'); %>

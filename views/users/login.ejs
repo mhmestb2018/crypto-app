@@ -1,18 +1,17 @@
 <%- include('../partials/header'); %>
- 
-<h1>Login </h1>
-    <BR><BR><BR>
 
-<form action="/users/login" method="POST"> 
+<h1>Login</h1>
+<BR /><BR /><BR />
 
-    <span>
-        <%= msg %> 
-    </span><br>
-    <span>Username: </span><input type="text" name="name" placeholder="USERNAME" required> 
-    <br>
-    <span>Password: </span><input type="password" name="password" placeholder="PASSWORD" required>
-        <br>
-        <button class="btn btn-primary" type="submit">Log In</button>
+<form action="/users/login" method="POST">
+  <span> <%= msg %> </span><br />
+  <span>Username: </span
+  ><input type="text" name="name" placeholder="USERNAME" required />
+  <br />
+  <span>Password: </span
+  ><input type="password" name="password" placeholder="PASSWORD" required />
+  <br />
+  <button class="btn btn-primary" type="submit">Log In</button>
 </form>
 
 <%- include('../partials/footer'); %>

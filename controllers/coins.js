@@ -1,52 +1,48 @@
-const Coin = require('../models/coin');
-const Portfolio = require('../models/portfolio')
+const Coin = require("../models/coin");
+const Portfolio = require("../models/portfolio");
 
 module.exports = {
-    index,
-    show, 
-    portfolioCoins
-}
+  index,
+  show,
+  portfolioCoins,
+};
 
 async function index(req, res, next) {
-    try{
-        const coins = await Coin.getAll();
+  try {
+    const coins = await Coin.getAll();
 
-        Portfolio.find({}, function (err, portfolios) {
-            if (err) {
-                return next(err)
-            }
+    Portfolio.find({}, function (err, portfolios) {
+      if (err) {
+        return next(err);
+      }
 
-            res.render('coins', {coins, portfolios})
-        });
-    } catch (err) {
-        res.send("Please reload Page. Seems API failed to load and made a boo boo.")
-    }
-
-
+      res.render("coins", { coins, portfolios });
+    });
+  } catch (err) {
+    res.send(
+      "Please reload Page. Seems API failed to load and made a boo boo."
+    );
+  }
 }
 
-async function show (req, res, next) {
+async function show(req, res, next) {
+  try {
+    const coin = await Coin.getOne(req.params.name, req.params.fullname);
 
-    try{
-        const coin = await Coin.getOne(req.params.name, req.params.fullname);
-
-        console.log(req.params.name)
-        res.render('coins/show', { coin });
- 
-    } catch (err) {
-        res.send(err)
-    }
-    
+    res.render("coins/show", { coin });
+  } catch (err) {
+    res.send(err);
+  }
 }
 
-async function portfolioCoins (req, res, next) {
-    try{
-        const coins = await Coin.getMultiple()
-        let currentPortfolio = req.body.id;
-        Portfolio.find(req.body.id, function(err, portfolio) {
-            let coinList = portfolio.coins;
-        })
-    } catch (err) {
-        res.send(err)
-    }
+async function portfolioCoins(req, res, next) {
+  try {
+    const coins = await Coin.getMultiple();
+    let currentPortfolio = req.body.id;
+    Portfolio.find(req.body.id, function (err, portfolio) {
+      let coinList = portfolio.coins;
+    });
+  } catch (err) {
+    res.send(err);
+  }
 }
