@@ -11,5 +11,6 @@ router.get('/:id', portfoliosCtrl.showOne);
 router.get('/:id/add/:name-:fullname', portfoliosCtrl.addCoin)
 router.post('/:id', portfoliosCtrl.updateCoin)
 router.put('/:id', portfoliosCtrl.updateName);
+router.put('/:id/:idx', portfoliosCtrl.updateAmount);
 
 module.exports = router;

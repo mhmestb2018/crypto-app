@@ -10,7 +10,8 @@ module.exports = {
     delete: deleteOne,
     addCoin,
     updateCoin,
-    updateName
+    updateName,
+    updateAmount
 }
 
 async function index(req, res, next) {
@@ -139,3 +140,17 @@ function updateName(req, res, next) {
         })
     })
  }
+
+function updateAmount(req, res, next) {
+    Portfolio.findById(req.params.id, function(err, portfolio) {
+        portfolio.coins.set(req.params.idx, { fullName: req.body.fullName, name: req.body.name, amount: req.body.amount})
+        portfolio.save(function (err) {
+            console.log(portfolio)
+            if(err) {
+                res.send(err);
+            }
+            console.log('done')
+            return res.redirect(`/portfolios/${req.params.id}`);
+        })
+    })
+}

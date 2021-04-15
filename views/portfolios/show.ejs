@@ -45,7 +45,20 @@
             <td><a href="/coins/<%=c.name%>-<%=c.fullName%>"><%= c.name %></a></td>
             <td><%= c.fullName %></td>
             <td>$<%= parseFloat(coins[c.name]).toLocaleString('en') %></td>
-            <td><%= c.amount %></td>
+            <td>
+              <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Edit
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <form action="/portfolios/<%= portfolio._id%>/<%= idx%>?_method=PUT" method="POST"> 
+                  <input type="number" name="amount" placeholder="0" step=0.0001 min=0 style="width: 80px;" >
+                  <input type="hidden" name="fullName" value="<%= c.fullName %>">
+                  <input type="hidden" name="name" value="<%= c.name %>">
+                  <button type="submit">Update</button>
+                </form>
+              </div>
+              <%= c.amount %>
+            </td>
             <td>$<%= parseFloat((c.amount*coins[c.name]).toFixed(3)).toLocaleString('en') %></td>
           </tr>
           <% }); %> 
