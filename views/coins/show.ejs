@@ -8,9 +8,21 @@
         <div class="col border-bottom">
           <h1 class="fw-bold"><%= coin.name %> <span class="title-smol"><%= coin.ticker %></span></h1></div>
         <div class="col border-bottom">
-          <h1 class="fw-bold"><span style="font-size:30px">$</span><%= coin.curPrice %></h1>
-          <h5>Last Hour: <%= coin.changeHourPCT %>% ($<%= coin.changeHour %>)</h5>
-          <h5>Last Day: <%= coin.changeDayPCT %>% ($<%= coin.changeDay %>)</h5>
+          <h1 class="fw-bold"><span style="font-size:30px">$</span><%= parseFloat(coin.curPrice).toLocaleString('en') %></h1>
+          <h5>Last Hour: 
+            <% if (coin.changeHourPCT > 0) { %>
+              <span class="up"><%= coin.changeHourPCT %>% ($<%= coin.changeHour %>)</span>
+            <% } else { %>
+              <span class="down"><%= coin.changeHourPCT %>% ($<%= coin.changeHour %>)</span>
+              <% } %>
+          </h5>
+          <h5>Last Day:
+            <% if (coin.changeDayPCT > 0) { %>
+              <span class="up"><%= coin.changeDayPCT %>% ($<%= coin.changeDayPCT %>)</span>
+            <% } else { %>
+              <span class="down"><%= coin.changeDayPCT %>% ($<%= coin.changeDayPCT %>)</span>
+              <% } %>
+          </h5>
         </div>
       </div>
     </div>
@@ -19,19 +31,19 @@
       <div class="row row-cols-3">
         <div class="col border-bottom">
           <p class="fw-bold">
-            Supply: <%= coin.supply %> <br>
-            Market Cap: $<%= coin.mcap %>
+            Supply: <%= (coin.supply).toLocaleString('en') %> <br>
+            Market Cap: $<%= (coin.mcap).toLocaleString('en') %>
           </p>
         </div>
         <div class="col border-bottom">
           <p class="fw-bold">
-            Volume: $<%= coin.volume %>
+            Volume: $<%= parseFloat(coin.volume).toLocaleString('en') %>
           </p>
         </div>
         <div class="col border-bottom">
           <p class="fw-bold">
-            24 Hour High: $<%= coin.price24High %><BR>
-            24 Hour Low: $<%= coin.price24Low %>
+            24 Hour High: $<%= parseFloat(coin.price24High).toLocaleString('en') %><BR>
+            24 Hour Low: $<%= parseFloat(coin.price24Low).toLocaleString('en') %>
           </p>
         </div>
       </div>

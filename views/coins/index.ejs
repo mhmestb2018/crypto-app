@@ -19,9 +19,20 @@
                   <th scope="col"><%= idx + 1 %></th>
                   <td><a href="/coins/<%= c.ticker %>-<%= c.name %>"><%= c.ticker %></a></td>
                   <td><%= c.name %></td>
-                  <td><%= c.curPrice %></td>
-                  <td><%= c.price1PCT %></td>
-                  <td><%= c.price24PCT %></td>
+                  <td><%= parseFloat(c.curPrice).toLocaleString('en') %></td>
+                  
+                  <% if (c.price1PCT > 0) { %>
+                    <td class="up"><%= c.price1PCT %></td>
+                  <% } else { %>
+                    <td class="down"><%= c.price1PCT %></td>
+                    <% } %>
+
+                    <% if (c.price24PCT > 0) { %>
+                    <td class="up"><%= c.price24PCT %></td>
+                  <% } else { %>
+                    <td class="down"><%= c.price24PCT %></td>
+                    <% } %>
+
                   <td>
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle bg-transparent" style="border: 0;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -44,9 +44,9 @@
           <tr>
             <td><a href="/coins/<%=c.name%>-<%=c.fullName%>"><%= c.name %></a></td>
             <td><%= c.fullName %></td>
-            <td>$<%= coins[c.name] %></td>
+            <td>$<%= parseFloat(coins[c.name]).toLocaleString('en') %></td>
             <td><%= c.amount %></td>
-            <td>$<%= (c.amount*coins[c.name]).toFixed(2) %></td>
+            <td>$<%= parseFloat((c.amount*coins[c.name]).toFixed(3)).toLocaleString('en') %></td>
           </tr>
           <% }); %> 
         </tbody>
