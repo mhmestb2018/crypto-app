@@ -1,0 +1,18 @@
+<%- include('../partials/header'); %>
+ 
+<h1>New User </h1>
+    <BR><BR><BR>
+
+<form action="/users/new" method="POST"> 
+
+    <span>
+        <%= msg %> 
+    </span><br>
+    <input type="text" name="name" placeholder="USERNAME" required> 
+    <br>
+    <input type="password" name="password" placeholder="PASSWORD" required>
+        <br>
+        <button class="btn btn-primary" type="submit">Register</button>
+</form>
+
+<%- include('../partials/footer'); %>

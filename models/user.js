@@ -6,11 +6,11 @@ const userSchema = new Schema(
     {
         name: {
             type: String, 
-            enum: ["AUS", "DFW", "DEN", "LAX", "SAN"],
+            unique: true
         },
         password: {
             type: String,
-            enum: ["First Class", "Business", "Economy"],
+            required: true
         },
         // portfolio: [portolioSchema] 
     }, 

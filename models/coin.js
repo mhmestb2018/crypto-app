@@ -138,8 +138,7 @@ async function getTotal(coinObj) {
             console.log(coinData)
         })
     }
-    console.log(coinObj)
-    console.log(`eh : ${coinData}`)
+    
         return coinData;
 }
 

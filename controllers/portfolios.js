@@ -20,7 +20,7 @@ async function index(req, res, next) {
             return next(err)
         } else if(!portfolios.length) {
             res.render("portfolios", {portfolios});
-        } 
+        }  
         const portfolioObject = {}
         portfolios.forEach((portfolio, idx) => {
             let coinsArray = []
@@ -138,4 +138,4 @@ function updateName(req, res, next) {
             return res.redirect(`${req.params.id}`);
         })
     })
-}
+ }
