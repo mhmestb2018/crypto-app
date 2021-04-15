@@ -30,7 +30,7 @@ module.exports = {
 
 async function getAll() {
   let response = await fetch(
-    `${rootUrl}/data/top/mktcapfull?limit=10&tsym=USD&api_key=${token}`
+    `${rootUrl}/data/top/mktcapfull?limit=100&tsym=USD&api_key=${token}`
   );
   let coins = await response.json();
 
